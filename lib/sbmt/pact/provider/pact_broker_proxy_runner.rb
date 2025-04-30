@@ -34,7 +34,7 @@ module Sbmt
           raise "server already running, stop server before starting new one" if @thread
 
           @server = WEBrick::HTTPServer.new({BindAddress: @host, Port: @port}, WEBrick::Config::HTTP)
-          @server.mount("/", Rack::Handler::WEBrick, PactBrokerProxy.new(
+          @server.mount("/", Rackup::Handler::WEBrick, PactBrokerProxy.new(
             nil,
             backend: @pact_broker_host, streaming: false, filter_type: @filter_type,
             username: @pact_broker_user, password: @pact_broker_password, logger: @logger

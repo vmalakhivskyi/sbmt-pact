@@ -24,7 +24,7 @@ module Sbmt
           @thread = Thread.new do
             @logger.debug "[webrick] starting http server"
 
-            ::Rack::Handler::WEBrick.run(Rails.application,
+            ::Rackup::Handler::WEBrick.run(Rails.application,
               Host: @options[:host],
               Port: @options[:port],
               Logger: @logger,
